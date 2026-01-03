@@ -3,9 +3,20 @@ package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class MiniMe_Generator extends JFrame{
+
+    String name;
+    String gender;
+    int age;
+    int height;
+    int weight;
+    String hair;
+    String eyes;
+    boolean glasses;
+
     private JPanel panel1;
     private JTextField textField_name;
     private JRadioButton radioButton_male;
@@ -29,18 +40,22 @@ public class MiniMe_Generator extends JFrame{
         setVisible(true);
 
 
+        ArrayList<Person> personen = new ArrayList<>();
+
+
+
+
         //alle Werte werden gespeichert und Objekt wird erstellt
         speichernButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name = textField_name.getText();
-                String gender = "";
-                int age = Integer.parseInt(textField_age.getText());
-                int height = Integer.parseInt(textField_height.getText());
-                int weight = Integer.parseInt(textField_weight.getText());
-                String hair = comboBox_hair.getSelectedItem().toString();
-                String eyes = comboBox_hair.getSelectedItem().toString();
-                boolean glasses;
+                name = textField_name.getText();
+                age = Integer.parseInt(textField_age.getText());
+                height = Integer.parseInt(textField_height.getText());
+                weight = Integer.parseInt(textField_weight.getText());
+                hair = comboBox_hair.getSelectedItem().toString();
+                eyes = comboBox_eyes.getSelectedItem().toString();
+
 
 
                 if(radioButton_male.isSelected()){
@@ -57,8 +72,19 @@ public class MiniMe_Generator extends JFrame{
                     glasses = false;
                 }
 
-                System.out.println(gender);
-                System.out.println(glasses);
+
+                //Objekt wird erstellt
+                Person person1 = new Person(name, gender, age, height, weight, hair, eyes, glasses);
+                personen.add(person1);
+
+
+                textArea1.setText("");
+
+                for (Person p : personen) {
+                    textArea1.append(p.toString());
+                }
+
+
             }
 
 
@@ -85,7 +111,21 @@ class Person{
     boolean glasses;
 
 
-    public Person() {
+    @Override
+    public String toString() {
+        return "Name: " + name +
+                "\nGeschlecht: " + gender +
+                "\nAlter: " + age +
+                "\nGröße: " + height +
+                "\nGewicht: " + weight +
+                "\nHaare: " + hair +
+                "\nAugen: " + eyes +
+                "\nBrille: " + (glasses ? "Ja" : "Nein") +
+                "\n----------------------\n";
+    }
+
+
+    public Person(String name, String gender, int age, int height, int weight, String hair, String eyes, boolean glasses) {
         this.name = name;
         this.gender = gender;
         this.age = age;
