@@ -88,7 +88,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="57d26" class="javax.swing.JRadioButton" binding="radioButton_gender">
+          <component id="57d26" class="javax.swing.JRadioButton" binding="radioButton_male">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -96,7 +96,7 @@
               <text value="männlich"/>
             </properties>
           </component>
-          <component id="cd0d2" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="cd0d2" class="javax.swing.JTextField" binding="textField_age">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -104,7 +104,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="e34a4" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="e34a4" class="javax.swing.JTextField" binding="textField_height">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -112,7 +112,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="4d5d1" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="4d5d1" class="javax.swing.JTextField" binding="textField_weight">
             <constraints>
               <grid row="4" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -120,7 +120,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="973d0" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+          <component id="973d0" class="javax.swing.JComboBox" binding="comboBox_hair">
             <constraints>
               <grid row="5" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -137,7 +137,7 @@
               </model>
             </properties>
           </component>
-          <component id="7f28f" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+          <component id="7f28f" class="javax.swing.JComboBox" binding="comboBox_eyes">
             <constraints>
               <grid row="6" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -150,7 +150,7 @@
               </model>
             </properties>
           </component>
-          <component id="ff261" class="javax.swing.JRadioButton" binding="jaRadioButton" default-binding="true">
+          <component id="ff261" class="javax.swing.JRadioButton" binding="radioButton_yes">
             <constraints>
               <grid row="7" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -166,7 +166,7 @@
               <text value="Speichern"/>
             </properties>
           </component>
-          <component id="92465" class="javax.swing.JRadioButton" binding="weiblichRadioButton" default-binding="true">
+          <component id="92465" class="javax.swing.JRadioButton" binding="radioButton_female">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -174,7 +174,7 @@
               <text value="weiblich"/>
             </properties>
           </component>
-          <component id="13908" class="javax.swing.JRadioButton" binding="diversRadioButton" default-binding="true">
+          <component id="13908" class="javax.swing.JRadioButton" binding="radioButton_divers">
             <constraints>
               <grid row="1" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -182,7 +182,7 @@
               <text value="divers"/>
             </properties>
           </component>
-          <component id="16101" class="javax.swing.JRadioButton" binding="neinRadioButton" default-binding="true">
+          <component id="16101" class="javax.swing.JRadioButton" binding="radioButton_no">
             <constraints>
               <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
