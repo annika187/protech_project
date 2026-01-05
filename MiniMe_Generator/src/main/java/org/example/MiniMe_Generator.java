@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class MiniMe_Generator extends JFrame{
+public class MiniMe_Generator extends JFrame {
 
     String name;
     String gender;
@@ -34,11 +34,12 @@ public class MiniMe_Generator extends JFrame{
     private JTextArea textArea1;
     private JButton berechnenButton;
     private JLabel label_bmi;
+    private JComboBox comboBox1;
 
     ArrayList<Person> personen = new ArrayList<>();
 
 
-    public MiniMe_Generator(){
+    public MiniMe_Generator() {
         setTitle("MiniMe Generator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 650);
@@ -54,7 +55,7 @@ public class MiniMe_Generator extends JFrame{
                 height = Integer.parseInt(textField_height.getText());
                 weight = Integer.parseInt(textField_weight.getText());
 
-                double bmi = weight / ((height/100)^2);
+                double bmi = weight / ((height / 100) * (height / 100));
 
                 bmi_string = Double.toString(bmi);
 
@@ -63,38 +64,108 @@ public class MiniMe_Generator extends JFrame{
         });
 
 
-
-
         //alle Werte werden gespeichert und Objekt wird erstellt
         speichernButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                name = textField_name.getText();
-                age = Integer.parseInt(textField_age.getText());
-                height = Integer.parseInt(textField_height.getText());
-                weight = Integer.parseInt(textField_weight.getText());
-                hair = comboBox_hair.getSelectedItem().toString();
-                eyes = comboBox_eyes.getSelectedItem().toString();
+
+                try {
+                    if (textField_name.getText().trim().isEmpty() || textField_age.getText().trim().isEmpty() || textField_height.getText().trim().isEmpty() || textField_weight.getText().trim().isEmpty()) {
+                        throw new Exception("Leeres Feld");
+                    }
 
 
 
-                if(radioButton_male.isSelected()){
-                    gender = "männlich";
-                } else if (radioButton_female.isSelected()) {
-                    gender = "weiblich";
-                } else if (radioButton_divers.isSelected()){
-                    gender = "divers";
-                }
+                    try {
+                        name = textField_name.getText().trim();
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Bitte einen gültigen String bei Name eingeben",
+                                "Falsche Eingabe",
+                                JOptionPane.ERROR_MESSAGE
+                        );
 
-                if (radioButton_yes.isSelected()){
-                    glasses = true;
-                }else{
-                    glasses = false;
+                        return;
+                    }
+
+
+
+
+                    try {
+                        age = Integer.parseInt(textField_age.getText().trim());
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Bitte einen gültigen Integer bei Alter eingeben",
+                                "Falsche Eingabe",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+
+                        return;
+                    }
+
+                    try {
+                        height = Integer.parseInt(textField_height.getText().trim());
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Bitte einen gültigen Integer bei Größe eingeben",
+                                "Falsche Eingabe",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+
+                        return;
+                    }
+
+                    try {
+                        weight = Integer.parseInt(textField_weight.getText().trim());
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Bitte einen gültigen Integer bei Gewicht eingeben",
+                                "Falsche Eingabe",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+
+                        return;
+                    }
+
+
+
+
+                    hair = comboBox_hair.getSelectedItem().toString().trim();
+                    eyes = comboBox_eyes.getSelectedItem().toString().trim();
+
+
+                    if (radioButton_male.isSelected()) {
+                        gender = "männlich";
+                    } else if (radioButton_female.isSelected()) {
+                        gender = "weiblich";
+                    } else if (radioButton_divers.isSelected()) {
+                        gender = "divers";
+                    }
+
+                    if (radioButton_yes.isSelected()) {
+                        glasses = true;
+                    } else {
+                        glasses = false;
+                    }
+
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Bitte einen gültigen Wert eingeben",
+                            "Falsche Eingabe",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+
+                    return;
                 }
 
 
                 //Objekt wird erstellt
-
 
 
                 Person person4 = new Person(name, gender, age, height, weight, hair, eyes, glasses, bmi_string);
@@ -122,6 +193,7 @@ public class MiniMe_Generator extends JFrame{
 
         });
 
+
     }
 
     static void main(String[] args) {
@@ -129,10 +201,10 @@ public class MiniMe_Generator extends JFrame{
 
     }
 
-    public void initObjekt(){
-        Person person1 = new Person("Maya" , "weiblich" , 19 , 175 , 55 , "dunkelbraun" , "braun" , false , "17,95");
-        Person person2 = new Person("Pai" , "weiblich" , 19 , 167 , 50 , "dunkelblond" , "blau" , false , "-");
-        Person person3 = new Person("Flo" , "männlich" , 21 , 203 , 95 , "dunkelblond" , "blau" , true , "-");
+    public void initObjekt() {
+        Person person1 = new Person("Maya", "weiblich", 19, 175, 55, "dunkelbraun", "braun", false, "18.0");
+        Person person2 = new Person("Pai", "weiblich", 19, 167, 50, "dunkelblond", "blau", false, "-");
+        Person person3 = new Person("Flo", "männlich", 21, 203, 95, "dunkelblond", "blau", true, "-");
 
         personen.add(person1);
         personen.add(person2);
@@ -146,7 +218,7 @@ public class MiniMe_Generator extends JFrame{
 }
 
 
-class Person{
+class Person {
     String name;
     String gender;
     int age;
