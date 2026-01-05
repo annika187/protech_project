@@ -16,6 +16,7 @@ public class MiniMe_Generator extends JFrame{
     String hair;
     String eyes;
     boolean glasses;
+    String bmi_string = "-";
 
     private JPanel panel1;
     private JTextField textField_name;
@@ -31,6 +32,11 @@ public class MiniMe_Generator extends JFrame{
     private JButton speichernButton;
     private JRadioButton radioButton_no;
     private JTextArea textArea1;
+    private JButton berechnenButton;
+    private JLabel label_bmi;
+
+    ArrayList<Person> personen = new ArrayList<>();
+
 
     public MiniMe_Generator(){
         setTitle("MiniMe Generator");
@@ -38,9 +44,23 @@ public class MiniMe_Generator extends JFrame{
         setSize(500, 650);
         setContentPane(panel1);
         setVisible(true);
+        initObjekt();
+        label_bmi.setText("-");
 
 
-        ArrayList<Person> personen = new ArrayList<>();
+        berechnenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                height = Integer.parseInt(textField_height.getText());
+                weight = Integer.parseInt(textField_weight.getText());
+
+                double bmi = weight / ((height/100)^2);
+
+                bmi_string = Double.toString(bmi);
+
+                label_bmi.setText(bmi_string);
+            }
+        });
 
 
 
@@ -74,9 +94,12 @@ public class MiniMe_Generator extends JFrame{
 
 
                 //Objekt wird erstellt
-                Person person1 = new Person(name, gender, age, height, weight, hair, eyes, glasses);
-                personen.add(person1);
 
+
+
+                Person person4 = new Person(name, gender, age, height, weight, hair, eyes, glasses, bmi_string);
+
+                personen.add(person4);
 
                 textArea1.setText("");
 
@@ -84,11 +107,21 @@ public class MiniMe_Generator extends JFrame{
                     textArea1.append(p.toString());
                 }
 
+                textField_name.setText("");
+                textField_age.setText("");
+                textField_height.setText("");
+                textField_weight.setText("");
+                comboBox_hair.setSelectedItem("Auswählen...");
+                comboBox_eyes.setSelectedItem("Auswählen...");
+                bmi_string = "-";
+                label_bmi.setText(bmi_string);
+
 
             }
 
 
         });
+
     }
 
     static void main(String[] args) {
@@ -96,6 +129,19 @@ public class MiniMe_Generator extends JFrame{
 
     }
 
+    public void initObjekt(){
+        Person person1 = new Person("Maya" , "weiblich" , 19 , 175 , 55 , "dunkelbraun" , "braun" , false , "17,95");
+        Person person2 = new Person("Pai" , "weiblich" , 19 , 167 , 50 , "dunkelblond" , "blau" , false , "-");
+        Person person3 = new Person("Flo" , "männlich" , 21 , 203 , 95 , "dunkelblond" , "blau" , true , "-");
+
+        personen.add(person1);
+        personen.add(person2);
+        personen.add(person3);
+
+        for (Person p : personen) {
+            textArea1.append(p.toString());
+        }
+    }
 
 }
 
@@ -109,6 +155,7 @@ class Person{
     String hair;
     String eyes;
     boolean glasses;
+    String bmi;
 
 
     @Override
@@ -116,16 +163,17 @@ class Person{
         return "Name: " + name +
                 "\nGeschlecht: " + gender +
                 "\nAlter: " + age +
-                "\nGröße: " + height +
-                "\nGewicht: " + weight +
+                "\nGröße: " + height + "cm" +
+                "\nGewicht: " + weight + "kg" +
                 "\nHaare: " + hair +
                 "\nAugen: " + eyes +
                 "\nBrille: " + (glasses ? "Ja" : "Nein") +
+                "\nBMI: " + bmi +
                 "\n----------------------\n";
     }
 
 
-    public Person(String name, String gender, int age, int height, int weight, String hair, String eyes, boolean glasses) {
+    public Person(String name, String gender, int age, int height, int weight, String hair, String eyes, boolean glasses, String bmi) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -134,5 +182,6 @@ class Person{
         this.hair = hair;
         this.eyes = eyes;
         this.glasses = glasses;
+        this.bmi = bmi;
     }
 }
