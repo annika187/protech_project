@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 
 public class MiniMe_Generator extends JFrame {
-
     String name;
     String gender;
     int age;
@@ -36,35 +35,38 @@ public class MiniMe_Generator extends JFrame {
     private JLabel label_bmi;
     private JComboBox fliterComboBox;
 
-    ArrayList<Person> personen = new ArrayList<>();
+    ArrayList<Person> personen = new ArrayList<>();     //Liste mit allen Personen
 
     //rechnet den bmi aus und gibt ihn zurück
     public static double bmiBerechnen(int height, int weight) {
         double heightMeter = height / 100.0;
         double bmi = weight / (heightMeter * heightMeter);
 
-        // auf 2 Nachkommastellen runden
-        return Math.round(bmi * 100.0) / 100.0;
+        return Math.round(bmi * 100.0) / 100.0;     // auf 2 Nachkommastellen runden
     }
 
     public MiniMe_Generator() {
+        //erstellt die GUI
         setTitle("MiniMe Generator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 650);
         setContentPane(panel1);
         setVisible(true);
-        initObjekt();
-        label_bmi.setText("-");
 
+        initObjekt();
+        label_bmi.setText("-");     //setzt das BMILabel auf -
+
+        //ist dafür zuständig das der BMI-Wert richtig angezeigt wird
         berechnenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //liest Größe und Gewicht ein
                 height = Integer.parseInt(textField_height.getText());
                 weight = Integer.parseInt(textField_weight.getText());
 
-                bmi_string = Double.toString(bmiBerechnen(height,weight));
+                bmi_string = Double.toString(bmiBerechnen(height,weight));      //ruft die BMI-Methode auf und ändert den double auf String
 
-                label_bmi.setText(bmi_string);
+                label_bmi.setText(bmi_string);      //schreibt den BMI in das dafür vorgesehene Label
             }
         });
 
@@ -72,13 +74,10 @@ public class MiniMe_Generator extends JFrame {
         speichernButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 try {
                     if (textField_name.getText().trim().isEmpty() || textField_age.getText().trim().isEmpty() || textField_height.getText().trim().isEmpty() || textField_weight.getText().trim().isEmpty()) {
                         throw new Exception("Leeres Feld");
                     }
-
-
 
                     try {
                         name = textField_name.getText().trim();
@@ -89,12 +88,8 @@ public class MiniMe_Generator extends JFrame {
                                 "Falsche Eingabe",
                                 JOptionPane.ERROR_MESSAGE
                         );
-
                         return;
                     }
-
-
-
 
                     try {
                         age = Integer.parseInt(textField_age.getText().trim());
@@ -105,7 +100,6 @@ public class MiniMe_Generator extends JFrame {
                                 "Falsche Eingabe",
                                 JOptionPane.ERROR_MESSAGE
                         );
-
                         return;
                     }
 
@@ -118,7 +112,6 @@ public class MiniMe_Generator extends JFrame {
                                 "Falsche Eingabe",
                                 JOptionPane.ERROR_MESSAGE
                         );
-
                         return;
                     }
 
@@ -131,16 +124,11 @@ public class MiniMe_Generator extends JFrame {
                                 "Falsche Eingabe",
                                 JOptionPane.ERROR_MESSAGE
                         );
-
                         return;
                     }
 
-
-
-
                     hair = comboBox_hair.getSelectedItem().toString().trim();
                     eyes = comboBox_eyes.getSelectedItem().toString().trim();
-
 
                     if (radioButton_male.isSelected()) {
                         gender = "männlich";
@@ -156,7 +144,6 @@ public class MiniMe_Generator extends JFrame {
                         glasses = false;
                     }
 
-
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(
                             null,
@@ -164,24 +151,25 @@ public class MiniMe_Generator extends JFrame {
                             "Falsche Eingabe",
                             JOptionPane.ERROR_MESSAGE
                     );
-
                     return;
                 }
 
 
                 //Objekt wird erstellt
-
-
                 Person person4 = new Person(name, gender, age, height, weight, hair, eyes, glasses, bmi_string);
 
+                //Personenobjekt wird der Liste hinzugefügt
                 personen.add(person4);
 
+                //Textarea wird nochmal gelöscht
                 textArea1.setText("");
 
+                //Textarea wird neu beschrieben
                 for (Person p : personen) {
                     textArea1.append(p.toString());
                 }
 
+                //alle Auswahlfelder werden auf standard gesetzt
                 textField_name.setText("");
                 textField_age.setText("");
                 textField_height.setText("");
@@ -193,6 +181,7 @@ public class MiniMe_Generator extends JFrame {
             }
         });
 
+        //guckt auf was gefiltert wird und ruft die entsprechene Methode auf
         fliterComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -236,14 +225,13 @@ public class MiniMe_Generator extends JFrame {
         }
     }
 
-    public void defaultFilter(){
+    private void defaultFilter(){
         textArea1.setText("");
         for (Person p : personen) {
             textArea1.append(p.toString());
         }
     }
-
-    public void maennlichFilter(){
+    private void maennlichFilter(){
         // Neue Liste für gefilterte Personen (nur männlich)
         ArrayList<Person> maennlichListe = new ArrayList<>();
 
@@ -263,7 +251,7 @@ public class MiniMe_Generator extends JFrame {
             textArea1.append(p.toString());
         }
     }
-    public void weiblichFilter(){
+    private void weiblichFilter(){
         // Neue Liste für gefilterte Personen (nur weiblich)
         ArrayList<Person> weiblichListe = new ArrayList<>();
 
@@ -283,7 +271,7 @@ public class MiniMe_Generator extends JFrame {
             textArea1.append(p.toString());
         }
     }
-    public void diversFilter(){
+    private void diversFilter(){
         // Neue Liste für gefilterte Personen (nur divers)
         ArrayList<Person> diversListe = new ArrayList<>();
 
