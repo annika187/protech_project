@@ -187,19 +187,32 @@ public class MiniMe_Generator extends JFrame {
                 comboBox_eyes.setSelectedItem("Auswählen...");
                 bmi_string = "-";
                 label_bmi.setText(bmi_string);
-
-
             }
-
-
         });
 
-
+        fliterComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String filter = fliterComboBox.getSelectedItem().toString();
+                switch (filter){
+                    case "männlich":
+                        maennlichFilter();
+                        break;
+                    case "weiblich":
+                        weiblichFilter();
+                        break;
+                    case "divers":
+                        diversFilter();
+                        break;
+                    default:
+                        defaultFilter();
+                }
+            }
+        });
     }
 
     static void main(String[] args) {
         new MiniMe_Generator();
-
     }
 
     //fügt 3 Personen der Liste hinzu und gibt sie in der TextArea aus
@@ -220,10 +233,71 @@ public class MiniMe_Generator extends JFrame {
         }
     }
 
+    public void defaultFilter(){
+        textArea1.setText("");
+        for (Person p : personen) {
+            textArea1.append(p.toString());
+        }
+    }
+
+    public void maennlichFilter(){
+        // Neue Liste für gefilterte Personen (nur männlich)
+        ArrayList<Person> maennlichListe = new ArrayList<>();
+
+        // Personenliste durchlaufen
+        for (Person p : personen) {
+            // Prüfen, ob die Person männlich ist
+            if (p.gender.equals("männlich")) {
+                maennlichListe.add(p);
+            }
+        }
+
+        // TextArea leeren
+        textArea1.setText("");
+
+        // Gefilterte Liste in der TextArea ausgeben
+        for (Person p : maennlichListe) {
+            textArea1.append(p.toString());
+        }
+    }
+    public void weiblichFilter(){
+        // Neue Liste für gefilterte Personen (nur weiblich)
+        ArrayList<Person> weiblichListe = new ArrayList<>();
+
+        // Personenliste durchlaufen
+        for (Person p : personen) {
+            // Prüfen, ob die Person weiblich ist
+            if (p.gender.equals("weiblich")) {
+                weiblichListe.add(p);
+            }
+        }
+
+        // TextArea leeren
+        textArea1.setText("");
+
+        // Gefilterte Liste in der TextArea ausgeben
+        for (Person p : weiblichListe) {
+            textArea1.append(p.toString());
+        }
+    }
+    public void diversFilter(){
+        // Neue Liste für gefilterte Personen (nur divers)
+        ArrayList<Person> diversListe = new ArrayList<>();
+
+        // Personenliste durchlaufen
+        for (Person p : personen) {
+            // Prüfen, ob die Person divers ist
+            if (p.gender.equals("divers")) {
+                diversListe.add(p);
+            }
+        }
+
+        // TextArea leeren
+        textArea1.setText("");
+
+        // Gefilterte Liste in der TextArea ausgeben
+        for (Person p : diversListe) {
+            textArea1.append(p.toString());
+        }
+    }
 }
-
-
-
-
-
-//Objektklasse auslagern
