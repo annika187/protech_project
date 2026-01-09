@@ -34,10 +34,15 @@ public class MiniMe_Generator extends JFrame {
     private JTextArea textArea1;
     private JButton berechnenButton;
     private JLabel label_bmi;
-    private JComboBox comboBox1;
+    private JComboBox fliterComboBox;
 
     ArrayList<Person> personen = new ArrayList<>();
 
+    //rechnet den bmi aus und gibt ihn zurück
+    public static double bmiBerechnen(int height, int weight) {
+        double heightMeter = height / 100.0;
+        return weight / (heightMeter * heightMeter);
+    }
 
     public MiniMe_Generator() {
         setTitle("MiniMe Generator");
@@ -48,21 +53,17 @@ public class MiniMe_Generator extends JFrame {
         initObjekt();
         label_bmi.setText("-");
 
-
         berechnenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 height = Integer.parseInt(textField_height.getText());
                 weight = Integer.parseInt(textField_weight.getText());
 
-                double bmi = weight / ((height / 100) * (height / 100));
-
-                bmi_string = Double.toString(bmi);
+                bmi_string = Double.toString(bmiBerechnen(height,weight));
 
                 label_bmi.setText(bmi_string);
             }
         });
-
 
         //alle Werte werden gespeichert und Objekt wird erstellt
         speichernButton.addActionListener(new ActionListener() {
@@ -201,15 +202,19 @@ public class MiniMe_Generator extends JFrame {
 
     }
 
+    //fügt 3 Personen der Liste hinzu und gibt sie in der TextArea aus
     public void initObjekt() {
+        //erstellt jeweils ein Person Objekt
         Person person1 = new Person("Maya", "weiblich", 19, 175, 55, "dunkelbraun", "braun", false, "18.0");
         Person person2 = new Person("Pai", "weiblich", 19, 167, 50, "dunkelblond", "blau", false, "-");
         Person person3 = new Person("Flo", "männlich", 21, 203, 95, "dunkelblond", "blau", true, "-");
 
+        //fügt die Personenobjekte der Liste hinzu
         personen.add(person1);
         personen.add(person2);
         personen.add(person3);
 
+        //geht die Personenliste durch und schreibt sie in die Textarea
         for (Person p : personen) {
             textArea1.append(p.toString());
         }
@@ -218,42 +223,7 @@ public class MiniMe_Generator extends JFrame {
 }
 
 
-class Person {
-    String name;
-    String gender;
-    int age;
-    int height;
-    int weight;
-    String hair;
-    String eyes;
-    boolean glasses;
-    String bmi;
 
 
-    @Override
-    public String toString() {
-        return "Name: " + name +
-                "\nGeschlecht: " + gender +
-                "\nAlter: " + age +
-                "\nGröße: " + height + "cm" +
-                "\nGewicht: " + weight + "kg" +
-                "\nHaare: " + hair +
-                "\nAugen: " + eyes +
-                "\nBrille: " + (glasses ? "Ja" : "Nein") +
-                "\nBMI: " + bmi +
-                "\n----------------------\n";
-    }
 
-
-    public Person(String name, String gender, int age, int height, int weight, String hair, String eyes, boolean glasses, String bmi) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.hair = hair;
-        this.eyes = eyes;
-        this.glasses = glasses;
-        this.bmi = bmi;
-    }
-}
+//Objektklasse auslagern

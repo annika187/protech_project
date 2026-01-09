@@ -220,7 +220,7 @@
               <text value="BMI"/>
             </properties>
           </component>
-          <component id="98655" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+          <component id="98655" class="javax.swing.JComboBox" binding="fliterComboBox">
             <constraints>
               <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
