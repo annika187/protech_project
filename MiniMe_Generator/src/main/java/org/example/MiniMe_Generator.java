@@ -41,7 +41,10 @@ public class MiniMe_Generator extends JFrame {
     //rechnet den bmi aus und gibt ihn zurück
     public static double bmiBerechnen(int height, int weight) {
         double heightMeter = height / 100.0;
-        return weight / (heightMeter * heightMeter);
+        double bmi = weight / (heightMeter * heightMeter);
+
+        // auf 2 Nachkommastellen runden
+        return Math.round(bmi * 100.0) / 100.0;
     }
 
     public MiniMe_Generator() {
@@ -218,7 +221,7 @@ public class MiniMe_Generator extends JFrame {
     //fügt 3 Personen der Liste hinzu und gibt sie in der TextArea aus
     public void initObjekt() {
         //erstellt jeweils ein Person Objekt
-        Person person1 = new Person("Maya", "weiblich", 19, 175, 55, "dunkelbraun", "braun", false, "18.0");
+        Person person1 = new Person("Maya", "weiblich", 19, 175, 55, "dunkelbraun", "braun", false, "17.96");
         Person person2 = new Person("Pai", "weiblich", 19, 167, 50, "dunkelblond", "blau", false, "-");
         Person person3 = new Person("Flo", "männlich", 21, 203, 95, "dunkelblond", "blau", true, "-");
 

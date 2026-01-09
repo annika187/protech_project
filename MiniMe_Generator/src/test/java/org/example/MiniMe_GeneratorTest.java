@@ -9,7 +9,7 @@ public class MiniMe_GeneratorTest {
         double bmi1 = MiniMe_Generator.bmiBerechnen(190,80);
         double bmi2 = MiniMe_Generator.bmiBerechnen(170,60);
 
-        assertEquals(22.16, bmi1, 0.01);    //darf um 0.01 abweichen (wichtig bei double)
-        assertEquals(20.76, bmi2, 0.01);
+        assertEquals(22.16, bmi1);
+        assertEquals(20.76, bmi2);
     }
 }
