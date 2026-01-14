@@ -1,4 +1,4 @@
-package org.example;
+package org.example; // klasse woraus wir das objekt erstellen
 
 /**
  * Die Klasse Person beschreibt eine Person mit
@@ -15,15 +15,15 @@ public class Person {
     boolean glasses;
     String bmi;
 
-    /**
-     * Überschreibt die toString()-Methode.
-     * Gibt alle Informationen der Person formatiert
-     * als Text zurück.
+    /*
+      Überschreibt die toString()-Methode.
+      Gibt alle Informationen der Person formatiert
+      als Text zurück.
      */
     @Override
     public String toString() {
         return "Name: " + name +
-                "\nGeschlecht: " + gender +
+                "\nGeschlecht: " + gender + // zeilen umbruch
                 "\nAlter: " + age +
                 "\nGröße: " + height + "cm" +
                 "\nGewicht: " + weight + "kg" +
@@ -34,7 +34,7 @@ public class Person {
                 "\n----------------------\n";
     }
 
-    //alle Variablen werden der Klasse übergeben
+    //alle Variablen werden der Klasse übergeben // construktor für das objekt
     public Person(String name, String gender, int age, int height, int weight, String hair, String eyes, boolean glasses, String bmi) {
         this.name = name;
         this.gender = gender;
